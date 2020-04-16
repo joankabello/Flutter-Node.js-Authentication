@@ -1,13 +1,5 @@
 var express = require('express');
-var jwt = require('jsonwebtoken');
-var crypto = require('crypto');
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-});
-const KEY = "m yincredibl y(!!1!11!)<'SECRET>)Key'!";
+var connection = require('./config/database.js');
 var app = express();
 
 connection.connect(function (err) {
@@ -19,7 +11,14 @@ connection.connect(function (err) {
   });
 });
 
-require('./routes/index.js')(app, connection, crypto, express, jwt, KEY);
+app.use(function(req, res, next) {
+  req.connection = connection
+  next()
+})
+
+const authRouter = require("./routes/routes");
+
+app.use("/", authRouter);
 
 let port = process.env.PORT || 3000;
 app.listen(port, function () {

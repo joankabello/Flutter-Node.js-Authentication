@@ -1,7 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/widgets.dart';
 
-const SERVER_IP = 'http://192.168.1.6:3000';
+const SERVER_IP = 'http://192.168.1.7:3000';
 final storage = FlutterSecureStorage();
 
 class SizeConfig {
