@@ -14,7 +14,6 @@ module.exports = {
     insert: function (connection, username, password, callback) {
         var cryptPassword = crypto.createHash('sha256').update(password).digest('hex');
         var credentials = [[username, cryptPassword]];
-        console.log(credentials);
         connection.query("INSERT INTO division5.users (username, password) VALUES ?", [credentials], callback);
     }
 };

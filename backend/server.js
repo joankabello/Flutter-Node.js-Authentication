@@ -16,6 +16,8 @@ app.use(function(req, res, next) {
   next()
 })
 
+app.use(express.urlencoded());
+
 const authRouter = require("./routes/routes");
 
 app.use("/", authRouter);
