@@ -36,7 +36,6 @@ module.exports = {
                 res.status(409);
                 res.send("An user with that username already exists");
               } else {
-                Auth.create(req.connection);
                 Auth.insert(req.connection, req.body.username, req.body.password, function (err, result) {
                   if (err) throw err;
                 });

@@ -8,9 +8,6 @@ module.exports = {
     selectSignUp: function (connection, username, password, callback) {
         connection.query("SELECT * FROM users WHERE username = ?", [username], callback);
     },
-    create: function (connection) {
-        connection.query("CREATE TABLE IF NOT EXISTS division5.users(id int(0), username varchar(255) not null, password varchar(255)not null)");
-    },
     insert: function (connection, username, password, callback) {
         var cryptPassword = crypto.createHash('sha256').update(password).digest('hex');
         var credentials = [[username, cryptPassword]];

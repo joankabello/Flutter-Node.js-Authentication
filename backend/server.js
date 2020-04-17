@@ -2,15 +2,6 @@ var express = require('express');
 var connection = require('./config/database.js');
 var app = express();
 
-connection.connect(function (err) {
-  if (err) throw err;
-  console.log("Connected!");
-  connection.query("CREATE DATABASE IF NOT EXISTS division5", function (err, result) {
-    if (err) throw err;
-    console.log("Database created");
-  });
-});
-
 app.use(function(req, res, next) {
   req.connection = connection
   next()
